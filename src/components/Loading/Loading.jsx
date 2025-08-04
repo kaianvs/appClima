@@ -1,9 +1,9 @@
+import "./style.css"
+
 const Loading = ()=>{
 
     return(
-        <div>
-            <h1>Carregando dados...</h1>
-        </div>
+        <div className="loading-spinner"></div>
     )
 
 }

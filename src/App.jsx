@@ -17,6 +17,7 @@ function App() {
 
   useEffect(()=>{
       async function fetchWeather(){
+         setLoading(true);
         try {
 
           const response = await fetch(`https://api.hgbrasil.com/weather?format=json-cors&key=${API_KEY}&city_name=Sobral, CE`);
@@ -24,18 +25,20 @@ function App() {
 
           
           if(data.results){
-            console.log(data)
             setWeather(data.results)
             setForecast(data.results.forecast.slice(1,4))
-            setLoading(true)
           }
+          
+          
 
         } catch (error) {
             console.error("A aplicação não conseguiu se comunicar com a API", error)
+        } finally{
+          setLoading(false)
         }
       }
 
-      
+
 
       fetchWeather();
       
@@ -47,8 +50,12 @@ function App() {
 
   return (
     <div className="app-container">
-      {loading ?
-      (
+
+      {}
+      {loading ? (
+        <Loading/>
+      ) :(
+        <>
         <SearchBar />
         {weather && (
           <>
@@ -57,8 +64,8 @@ function App() {
             <ForecastList forecast={forecasts} />
           </>
         )}
-        ) :( 
-        <Loading/>) }
+        </>
+        )}
 
   
     </div>
