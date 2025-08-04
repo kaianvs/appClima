@@ -1,0 +1,16 @@
+.forecast-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.forecast-item{
+    background: #103456;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 22px 10px;
+    border-radius: 20px;
+}
