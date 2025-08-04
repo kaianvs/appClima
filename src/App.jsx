@@ -13,6 +13,10 @@ function App() {
   const [weather, setWeather] = useState(null)
   const [forecasts, setForecast] = useState(null);
   const [loading, setLoading] = useState(false)
+  const [city, setCity] = useState('')
+
+
+
 
 
   useEffect(()=>{
@@ -20,7 +24,7 @@ function App() {
          setLoading(true);
         try {
 
-          const response = await fetch(`https://api.hgbrasil.com/weather?format=json-cors&key=${API_KEY}&city_name=Sobral, CE`);
+          const response = await fetch(`https://api.hgbrasil.com/weather?format=json-cors&key=${API_KEY}&city_name=${city}`);
           const data = await response.json()
 
           
@@ -37,15 +41,12 @@ function App() {
           setLoading(false)
         }
       }
-
-
-
       fetchWeather();
-      
 
-  }, [])
+  }, [city])
 
   
+
 
 
   return (
@@ -56,7 +57,7 @@ function App() {
         <Loading/>
       ) :(
         <>
-        <SearchBar />
+        <SearchBar onSearch = {handleChange} />
         {weather && (
           <>
             <h1>{weather.city}</h1>
