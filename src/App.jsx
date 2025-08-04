@@ -3,6 +3,7 @@ import WeatherCard from "./components/WeatherCard";
 import "./App.css";
 import { useEffect, useState } from "react";
 import ForecastList from "./components/ForecastNextDays/ForecastList";
+import Loading from "./components/Loading/Loading";
 
 
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
@@ -11,6 +12,7 @@ function App() {
 
   const [weather, setWeather] = useState(null)
   const [forecasts, setForecast] = useState(null);
+  const [loading, setLoading] = useState(false)
 
 
   useEffect(()=>{
@@ -25,6 +27,7 @@ function App() {
             console.log(data)
             setWeather(data.results)
             setForecast(data.results.forecast.slice(1,4))
+            setLoading(true)
           }
 
         } catch (error) {
@@ -44,15 +47,18 @@ function App() {
 
   return (
     <div className="app-container">
-      <SearchBar />
-      {weather && (
-        <>
-          <h1>{weather.city}</h1>
-          <WeatherCard weather={weather} />
-          <ForecastList forecast={forecasts} />
-        </>
-      )}
-      
+      {loading ?
+      (
+        <SearchBar />
+        {weather && (
+          <>
+            <h1>{weather.city}</h1>
+            <WeatherCard weather={weather} />
+            <ForecastList forecast={forecasts} />
+          </>
+        )}
+        ) :( 
+        <Loading/>) }
 
   
     </div>
