@@ -2,24 +2,28 @@ import { useState } from "react";
 import "./styles.css";
 
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = ({ setCity }) => {
 
-  const [inputValue, setInputValue] = useState("")
+  const [inputValue, setInputValue] = useState('')
 
-  const handleSearch = (e)=>{
-    e.preventDefault();
+   const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
 
-    const trimmedValue = inputValue.trim();
-    if(trimmedValue !== ""){
-      onSearch(trimmedValue)
-      setInputValue("")
+    const handleSubmit = (event) => {
+    event.preventDefault(); // Evita o recarregamento da página.
+
+    // 4. Chama a função 'setCity' do componente pai para atualizar a cidade,
+    //    mas apenas se o valor do input não estiver vazio.
+    if (inputValue.trim()) {
+      setCity(inputValue.trim());
     }
-  }
+  };
 
   return (
-    <form className="form-search">
+    <form className="form-search" onSubmit={handleSubmit}>
       <label className="search-bar">
-        <input type="text" placeholder="Digite a cidade" onChange={(e) => setInputValue(e.target.value)}/>
+        <input type="text" placeholder="Digite a cidade" onChange={handleInputChange} value={inputValue}/>
         <button type="submit">
           <img src="./search.svg" alt="ícone de busca" />
         </button>

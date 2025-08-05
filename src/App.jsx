@@ -52,12 +52,12 @@ function App() {
   return (
     <div className="app-container">
 
-      {}
+      
       {loading ? (
         <Loading/>
       ) :(
         <>
-        <SearchBar onSearch = {handleChange} />
+        <SearchBar setCity = {setCity}  />
         {weather && (
           <>
             <h1>{weather.city}</h1>
