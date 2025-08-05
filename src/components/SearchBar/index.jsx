@@ -11,17 +11,15 @@ const SearchBar = ({ setCity }) => {
   };
 
     const handleSubmit = (event) => {
-    event.preventDefault(); // Evita o recarregamento da página.
+        event.preventDefault(); 
 
-    // 4. Chama a função 'setCity' do componente pai para atualizar a cidade,
-    //    mas apenas se o valor do input não estiver vazio.
-    if (inputValue.trim()) {
-      setCity(inputValue.trim());
+        if (inputValue.trim()) {
+          setCity(inputValue.trim());
     }
   };
 
   return (
-    <form className="form-search" onSubmit={handleSubmit}>
+    <form className="form-search"  onSubmit={handleSubmit}>
       <label className="search-bar">
         <input type="text" placeholder="Digite a cidade" onChange={handleInputChange} value={inputValue}/>
         <button type="submit">

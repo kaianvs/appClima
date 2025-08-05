@@ -13,7 +13,7 @@ function App() {
   const [weather, setWeather] = useState(null)
   const [forecasts, setForecast] = useState(null);
   const [loading, setLoading] = useState(false)
-  const [city, setCity] = useState('')
+  const [city, setCity] = useState('');
 
 
 
@@ -57,7 +57,7 @@ function App() {
         <Loading/>
       ) :(
         <>
-        <SearchBar setCity = {setCity}  />
+        <SearchBar setCity = { setCity }  />
         {weather && (
           <>
             <h1>{weather.city}</h1>
