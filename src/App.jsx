@@ -13,7 +13,7 @@ function App() {
   const [weather, setWeather] = useState(null)
   const [forecasts, setForecast] = useState(null);
   const [loading, setLoading] = useState(false)
-  const [city, setCity] = useState('');
+  const [city, setCity] = useState("");
 
 
 
@@ -45,7 +45,7 @@ function App() {
 
   }, [city])
 
-  
+  console.log(weather)
 
 
 
@@ -60,7 +60,9 @@ function App() {
         <SearchBar setCity = { setCity }  />
         {weather && (
           <>
-            <h1>{weather.city}</h1>
+            <h1>{weather.city}
+              <span>Nascer do Sol: {weather.sunrise } | Pôr do Sol: {weather.sunset}</span>
+            </h1>
             <WeatherCard weather={weather} />
             <ForecastList forecast={forecasts} />
           </>
